@@ -1,12 +1,39 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useEffect } from 'react';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import WhatWeDo from '@/components/WhatWeDo';
+import OurServices from '@/components/OurServices';
+import BookAppointment from '@/components/BookAppointment';
+import Footer from '@/components/Footer';
 
 const Index = () => {
+  // Add metadata for SEO
+  useEffect(() => {
+    document.title = "Moveurads | Digital Marketing Innovation";
+    
+    // Update meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Moveurads transforms digital opportunities into impactful realities for your business with innovative marketing strategies.');
+    } else {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      metaDescription.setAttribute('content', 'Moveurads transforms digital opportunities into impactful realities for your business with innovative marketing strategies.');
+      document.head.appendChild(metaDescription);
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main>
+        <Hero />
+        <WhatWeDo />
+        <OurServices />
+        <BookAppointment />
+      </main>
+      <Footer />
     </div>
   );
 };
