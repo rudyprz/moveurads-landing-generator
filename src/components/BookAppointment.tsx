@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/use-toast';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const BookAppointment = () => {
   const [name, setName] = useState('');
@@ -113,76 +114,98 @@ const BookAppointment = () => {
                 </div>
               </div>
             </div>
+            
+            {/* Image block - only visible on mobile */}
+            <div className="rounded-xl overflow-hidden shadow-lg mb-8 lg:hidden">
+              <AspectRatio ratio={1} className="bg-accent/5">
+                <img
+                  src="/lovable-uploads/64ae0a20-d3ed-41f5-adbe-68c4b8fb645e.png"
+                  alt="Marketing consultant ready to help you"
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+            </div>
           </div>
           
-          <div className="glass-card p-8 md:p-10">
-            {submitted ? (
-              <div className="text-center py-8">
-                <div className="mx-auto w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
-                  <CheckCircle2 className="w-8 h-8 text-accent" />
+          <div className="relative">
+            {/* Image block - only visible on desktop */}
+            <div className="hidden lg:block absolute -left-28 -top-12 w-40 h-40 rounded-full overflow-hidden shadow-lg border-4 border-white z-10 animate-pulse-soft">
+              <img
+                src="/lovable-uploads/64ae0a20-d3ed-41f5-adbe-68c4b8fb645e.png"
+                alt="Marketing consultant ready to help you"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            
+            <div className="glass-card p-8 md:p-10">
+              {submitted ? (
+                <div className="text-center py-8">
+                  <div className="mx-auto w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6">
+                    <CheckCircle2 className="w-8 h-8 text-accent" />
+                  </div>
+                  <h3 className="text-2xl font-display font-medium mb-2">Booking Received!</h3>
+                  <p className="text-foreground/80 mb-6">
+                    We'll contact you shortly to confirm your appointment.
+                  </p>
                 </div>
-                <h3 className="text-2xl font-display font-medium mb-2">Booking Received!</h3>
-                <p className="text-foreground/80 mb-6">
-                  We'll contact you shortly to confirm your appointment.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Your Name <span className="text-destructive">*</span>
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
-                    placeholder="John Doe"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email Address <span className="text-destructive">*</span>
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
-                    placeholder="john@example.com"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">
-                    Company Name
-                  </label>
-                  <input
-                    id="company"
-                    type="text"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
-                    placeholder="Your Company Ltd"
-                  />
-                </div>
-                
-                <button
-                  type="submit"
-                  className={cn(
-                    "w-full py-3 rounded-lg font-medium text-center transition-all flex items-center justify-center gap-2",
-                    "bg-accent text-accent-foreground hover:brightness-110"
-                  )}
-                >
-                  Book Your Free Call <ArrowRight size={18} />
-                </button>
-              </form>
-            )}
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      Your Name <span className="text-destructive">*</span>
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      Email Address <span className="text-destructive">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
+                      placeholder="john@example.com"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium mb-2">
+                      Company Name
+                    </label>
+                    <input
+                      id="company"
+                      type="text"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
+                      placeholder="Your Company Ltd"
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className={cn(
+                      "w-full py-3 rounded-lg font-medium text-center transition-all flex items-center justify-center gap-2",
+                      "bg-accent text-accent-foreground hover:brightness-110"
+                    )}
+                  >
+                    Book Your Free Call <ArrowRight size={18} />
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </div>
