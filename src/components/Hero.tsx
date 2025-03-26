@@ -6,12 +6,14 @@ const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    // Simple parallax effect
+    // Simple parallax effect with reduced intensity
     const handleScroll = () => {
       if (heroRef.current) {
         const scrollY = window.scrollY;
-        const opacity = Math.max(1 - scrollY / 700, 0.2);
-        const transform = `translateY(${scrollY * 0.3}px)`;
+        // Adjust opacity to never go below 0.5 so content remains visible
+        const opacity = Math.max(1 - scrollY / 1500, 0.5);
+        // Use a gentler transform to avoid content disappearing
+        const transform = `translateY(${scrollY * 0.15}px)`;
         
         heroRef.current.style.opacity = opacity.toString();
         heroRef.current.style.transform = transform;

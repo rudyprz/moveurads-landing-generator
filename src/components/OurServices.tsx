@@ -44,7 +44,9 @@ const OurServices = () => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // Add the animation class but don't remove visibility
             entry.target.classList.add('animate-fade-in');
+            entry.target.classList.remove('opacity-0');
             observer.unobserve(entry.target);
           }
         });
