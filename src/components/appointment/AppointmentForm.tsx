@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/use-toast';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 
 interface AppointmentFormProps {
   onSubmit?: (formData: { name: string; email: string; company: string }) => void;
@@ -67,59 +70,53 @@ const AppointmentForm = ({ onSubmit }: AppointmentFormProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
+      <div className="space-y-2">
+        <Label htmlFor="name">
           Your Name <span className="text-destructive">*</span>
-        </label>
-        <input
+        </Label>
+        <Input
           id="name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
           placeholder="John Doe"
           required
         />
       </div>
       
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-2">
+      <div className="space-y-2">
+        <Label htmlFor="email">
           Email Address <span className="text-destructive">*</span>
-        </label>
-        <input
+        </Label>
+        <Input
           id="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
           placeholder="john@example.com"
           required
         />
       </div>
       
-      <div>
-        <label htmlFor="company" className="block text-sm font-medium mb-2">
+      <div className="space-y-2">
+        <Label htmlFor="company">
           Company Name
-        </label>
-        <input
+        </Label>
+        <Input
           id="company"
           type="text"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg border border-border bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all"
           placeholder="Your Company Ltd"
         />
       </div>
       
-      <button
+      <Button
         type="submit"
-        className={cn(
-          "w-full py-3 rounded-lg font-medium text-center transition-all flex items-center justify-center gap-2",
-          "bg-accent text-accent-foreground hover:brightness-110"
-        )}
+        className="w-full"
       >
-        Book Your Free Call <ArrowRight size={18} />
-      </button>
+        Book Your Free Call <ArrowRight className="ml-2" />
+      </Button>
     </form>
   );
 };
