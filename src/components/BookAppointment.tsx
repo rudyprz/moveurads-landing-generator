@@ -128,8 +128,8 @@ const BookAppointment = () => {
           </div>
           
           <div className="relative">
-            {/* Image block - only visible on desktop */}
-            <div className="hidden lg:block absolute -left-28 -top-12 w-40 h-40 rounded-full overflow-hidden shadow-lg border-4 border-white z-10 animate-pulse-soft">
+            {/* Adjusted positioning for the circular image */}
+            <div className="hidden lg:block absolute -left-28 -top-20 w-40 h-40 rounded-full overflow-hidden shadow-lg border-4 border-white z-10 animate-pulse-soft">
               <img
                 src="/lovable-uploads/64ae0a20-d3ed-41f5-adbe-68c4b8fb645e.png"
                 alt="Marketing consultant ready to help you"
