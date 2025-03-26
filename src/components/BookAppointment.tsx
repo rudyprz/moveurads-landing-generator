@@ -12,6 +12,11 @@ const BookAppointment = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
+    // Remove the opacity-0 class by default to ensure elements are visible even without JS
+    if (sectionRef.current) {
+      sectionRef.current.classList.remove('opacity-0');
+    }
+    
     const observeSection = () => {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -75,7 +80,7 @@ const BookAppointment = () => {
       
       <div 
         ref={sectionRef}
-        className="section-container relative z-10 animate-on-scroll"
+        className="section-container relative z-10"
       >
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>

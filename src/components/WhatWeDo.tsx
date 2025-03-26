@@ -25,6 +25,15 @@ const WhatWeDo = () => {
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   
   useEffect(() => {
+    // Remove the opacity-0 class by default to ensure elements are visible even without JS
+    if (sectionRef.current) {
+      sectionRef.current.classList.remove('opacity-0');
+    }
+    
+    itemRefs.current.forEach(ref => {
+      if (ref) ref.classList.remove('opacity-0');
+    });
+    
     const observeElements = () => {
       const options = {
         root: null,
@@ -35,9 +44,8 @@ const WhatWeDo = () => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Add the animation class but don't remove visibility
+            // Add the animation class only
             entry.target.classList.add('animate-fade-in');
-            entry.target.classList.remove('opacity-0');
             observer.unobserve(entry.target);
           }
         });
@@ -68,7 +76,7 @@ const WhatWeDo = () => {
       <div className="section-container">
         <div 
           ref={sectionRef} 
-          className="text-center max-w-3xl mx-auto animate-on-scroll"
+          className="text-center max-w-3xl mx-auto"
         >
           <h2 className="section-title">What We Do?</h2>
           <p className="section-subtitle">
@@ -81,7 +89,7 @@ const WhatWeDo = () => {
             <div
               key={index}
               ref={el => itemRefs.current[index] = el}
-              className="glass-card p-8 flex flex-col items-start hover-lift animate-on-scroll"
+              className="glass-card p-8 flex flex-col items-start hover-lift"
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}
             >
               <div className="p-3 rounded-xl bg-secondary mb-6">

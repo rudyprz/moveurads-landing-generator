@@ -75,7 +75,8 @@
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
   
+  /* Remove opacity-0 to ensure elements are visible by default */
   .animate-on-scroll {
-    @apply opacity-0;
+    @apply transition-opacity duration-500;
   }
 }
