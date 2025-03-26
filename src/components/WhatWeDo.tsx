@@ -1,22 +1,26 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Layers, Lightbulb, Rocket } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 const features = [
   {
     title: "Traditional meets Digital",
     description: "We merge the traditional way of marketing with the modern digital way to create comprehensive strategies that honor proven techniques while embracing innovation.",
     icon: <Layers className="w-8 h-8 text-accent" />,
+    image: "/lovable-uploads/5073f672-ecac-43bf-9334-de080f43284c.png"
   },
   {
     title: "Innovation using AI",
     description: "Harness the power of artificial intelligence to gain insights, automate processes, and create cutting-edge marketing solutions that keep you ahead of the competition.",
     icon: <Lightbulb className="w-8 h-8 text-accent" />,
+    image: "/lovable-uploads/4aa3e2fa-a92d-462b-a926-7ad63166abb9.png"
   },
   {
     title: "Strengthen Market Presence",
     description: "Traditional marketing with modern techniques to strengthen market presence, build lasting brand recognition, and create meaningful connections with your audience.",
     icon: <Rocket className="w-8 h-8 text-accent" />,
+    image: "/lovable-uploads/e7ee42b9-a419-4df1-8fd2-6b55d449dbe0.png"
   },
 ];
 
@@ -86,18 +90,28 @@ const WhatWeDo = () => {
         
         <div className="grid md:grid-cols-3 gap-8 mt-16">
           {features.map((feature, index) => (
-            <div
+            <Card
               key={index}
               ref={el => itemRefs.current[index] = el}
-              className="glass-card p-8 flex flex-col items-start hover-lift"
+              className="overflow-hidden hover-lift border-none"
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}
             >
-              <div className="p-3 rounded-xl bg-secondary mb-6">
-                {feature.icon}
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={feature.image} 
+                  alt={feature.title} 
+                  className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               </div>
-              <h3 className="text-xl font-display font-medium mb-3">{feature.title}</h3>
-              <p className="text-foreground/80">{feature.description}</p>
-            </div>
+              <CardContent className="p-6">
+                <div className="p-3 rounded-xl bg-secondary mb-4 inline-block -mt-12 relative z-10 shadow-lg">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-display font-medium mb-3">{feature.title}</h3>
+                <p className="text-foreground/80">{feature.description}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
